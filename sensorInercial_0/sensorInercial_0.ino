@@ -160,8 +160,7 @@ void loop() {
   //if ((lastPrint + PRINT_SPEED) < millis())//cada 20 ms
   //{
 
-  //Serial.print("resta: ");
-  //Serial.println(lastPrint + PRINT_SPEED);
+
 
   archivo.print(time2);
   archivo.print(", ");
