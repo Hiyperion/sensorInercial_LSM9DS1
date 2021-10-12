@@ -76,16 +76,7 @@ void setup() {
     
     
     
-  
-    //archivo.println(" deg/s");
 
-    //while (archivo.available())
-    //{
-    //archivo.println("testing 1, 2, 3.");
-    //dataLine = archivo.read();
-    //Serial.write(archivo.read());  // En un caso real se realizarían las acciones oportunas
-    //}
-    //archivo.close();
   }
   else
   {
@@ -106,16 +97,11 @@ void setup() {
                    "if the board jumpers are.");
     while (1);
   }
-  //digitalWrite(ledPin, HIGH);
-
-  //digitalWrite(13, HIGH);
-  //delay(1);//1ms
 
 
 }
 
 void loop() {
-  //digitalWrite(13, HIGH);
   // Update the sensor values whenever new data is available
   if (inicio) {
     for (int sound = 0; sound < 3; sound ++) {
@@ -148,13 +134,6 @@ void loop() {
     // ax, ay, and az variables with the most current data.
     imu.readAccel();
   }
-  //if ( imu.magAvailable() )
-  //{
-  // To read from the magnetometer, first call the
-  // readMag() function. When it exits, it'll update the
-  // mx, my, and mz variables with the most current data.
-  //imu.readMag();
-  //}
 
 
   //if ((lastPrint + PRINT_SPEED) < millis())//cada 20 ms
@@ -173,36 +152,22 @@ void loop() {
   sample++;
 
   
-  //printMag();   // Print "M: mx, my, mz"
-  // Print the heading and orientation for fun!
-  // Call print attitude. The LSM9DS1's mag x and y
-  // axes are opposite to the accelerometer, so my, mx are
-  // substituted for each other.
-
-  //printAttitude(imu.ax, imu.ay, imu.az,
-  //            -imu.my, -imu.mx, imu.mz);
 
 
-
-  if (cont > 50) {
+  if (cont > 400) {
     archivo.close();
-    //Serial.print("Muestras grabadas: ");
-    //Serial.println(sample);
-    //Serial.println(cont);
 
 
     archivo = SD.open(fileName, FILE_WRITE);
     cont = 0;
+    digitalWrite(buzzPin, HIGH);
+    delay(2000);
+    digitalWrite(buzzPin, LOW);
+    
   }
   cont++;
-  //lastPrint = millis(); // Update lastPrint time   //time2
-
-  //Serial.print("milis 2: ");
-  //Serial.println(millis());
   time2 = millis();
   dTime=time2-time1;
-  //Serial.println(time2);
-  //Serial.println(dTime);
   if (dTime<20){
     Serial.println(dTime);
     delay(20-dTime);
