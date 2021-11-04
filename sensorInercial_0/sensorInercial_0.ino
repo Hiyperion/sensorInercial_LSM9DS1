@@ -25,7 +25,7 @@ int cont = 0;
 int sample = 0;
 #define FILE_BASE_NAME "Data"
 const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
-char fileName[] = FILE_BASE_NAME "00.csv";
+char fileName[] = FILE_BASE_NAME "000.csv";
 bool inicio = true;
 const int buzzPin = 8;
 void setup() {
@@ -40,9 +40,14 @@ void setup() {
   Serial.println(F("Iniciado correctamente"));
 
   while (SD.exists(fileName)) {
-    if (fileName[BASE_NAME_SIZE + 1] != '9') {//entre 00 y 99
+    if (fileName[BASE_NAME_SIZE + 2] != '9') {//entre 00 y 99
       fileName[BASE_NAME_SIZE + 1]++;
-    } else if (fileName[BASE_NAME_SIZE] != '9') {
+    } else if (fileName[BASE_NAME_SIZE+1] != '9') {
+      fileName[BASE_NAME_SIZE + 2] = '0';
+      fileName[BASE_NAME_SIZE + 1]++;
+
+    }else if (fileName[BASE_NAME_SIZE] != '9') {
+      fileName[BASE_NAME_SIZE + 2] = '0';
       fileName[BASE_NAME_SIZE + 1] = '0';
       fileName[BASE_NAME_SIZE]++;
 
