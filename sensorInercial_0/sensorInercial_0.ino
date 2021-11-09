@@ -86,6 +86,7 @@ void setup() {
   else
   {
     Serial.println(F("Error al abrir el archivo"));
+    digitalWrite(buzzPin, HIGH);
   }
 
 
