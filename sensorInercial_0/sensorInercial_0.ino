@@ -41,7 +41,7 @@ void setup() {
 
   while (SD.exists(fileName)) {
     if (fileName[BASE_NAME_SIZE + 2] != '9') {//entre 00 y 99
-      fileName[BASE_NAME_SIZE + 1]++;
+      fileName[BASE_NAME_SIZE + 2]++;
     } else if (fileName[BASE_NAME_SIZE+1] != '9') {
       fileName[BASE_NAME_SIZE + 2] = '0';
       fileName[BASE_NAME_SIZE + 1]++;
