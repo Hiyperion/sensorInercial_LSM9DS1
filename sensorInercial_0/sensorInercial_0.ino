@@ -35,6 +35,11 @@ void setup() {
   if (!SD.begin(4))
   {
     Serial.println(F("Error al iniciar"));
+    
+    digitalWrite(buzzPin, HIGH);
+    delay(4000);
+    digitalWrite(buzzPin, LOW);
+    delay(4000);
     return;
   }
   Serial.println(F("Iniciado correctamente"));
@@ -110,15 +115,19 @@ void setup() {
 void loop() {
   // Update the sensor values whenever new data is available
   if (inicio) {
-    for (int sound = 0; sound < 3; sound ++) {
+    for (int sound = 0; sound < 2; sound ++) {
       digitalWrite(buzzPin, HIGH);
       delay(400);
       digitalWrite(buzzPin, LOW);
       delay(400);
     }
-    digitalWrite(buzzPin, LOW);
+    //digitalWrite(buzzPin, LOW);
     inicio = false;
-    Serial.println("inicio  grabado");
+    //Serial.println("inicio  grabado");
+    digitalWrite(buzzPin, HIGH);
+    delay(400);
+    digitalWrite(buzzPin, LOW);
+    //digitalWrite(buzzPin, LOW);
   }
 
   //Serial.print("milis 1: ");
@@ -145,12 +154,13 @@ void loop() {
   //if ((lastPrint + PRINT_SPEED) < millis())//cada 20 ms
   //{
 
-
+  
 
   archivo.print(time2);
   archivo.print(", ");
   archivo.print(sample);
   archivo.print(", ");
+  
   printAccel(); // Print "A: ax, ay, az"
   archivo.print(", ");
   printGyro();  // Print "G: gx, gy, gz"
@@ -175,7 +185,7 @@ void loop() {
   time2 = millis();
   dTime=time2-time1;
   if (dTime<20){
-    Serial.println(dTime);
+    //Serial.println(dTime);
     delay(20-dTime);
   }
   //}
